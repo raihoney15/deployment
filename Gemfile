@@ -67,3 +67,9 @@ group :test do
   gem "selenium-webdriver"
 end
 gem 'devise'
+gem 'figaro'
+gem 'capistrano'
+gem 'capistrano3-puma'
+gem 'capistrano-rails', require: false
+gem 'capistrano-bundler', require: false
+gem 'capistrano-rvm'
