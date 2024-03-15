@@ -1,10 +1,10 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.18.1"
-
+server '54.242.22.117', user: 'ubuntu', roles: %w{web app db}
 set :application, "deployment"
 set :repo_url, "git@github.com:raihoney15/deployment.git"
-set :branch, :master
-set :deploy_to, '/home/deploy/deployment'
+set :branch, :main
+set :deploy_to, '/home/ubuntu/deployment'
 set :pty, true
 set :linked_files, %w{config/database.yml config/application.yml}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
@@ -26,6 +26,11 @@ set :puma_workers, 0
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true
 set :puma_preload_app, false
+set :ssh_options, {
+  forward_agent: true,
+  auth_methods: ["publickey"],
+  keys: ["/home/thinkbiz/.ssh/deployment1.pem"]
+}
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
